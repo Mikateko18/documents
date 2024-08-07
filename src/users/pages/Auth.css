@@ -1,30 +1,24 @@
 
+
 .authentication__header {
     color: white;
     text-align: center;
   }
   
   .authentication {
-  background: #fff;
-  width: 300px;
-  padding: 25px 30px;
-  border-radius: 5px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
-  position: relative;
-  top:100px;
-  left: 40%;
-  margin-bottom: 1rem;
+	background-image: url('http://3.bp.blogspot.com/-Oqc1-ZH3k8w/TlmwzaKGnJI/AAAAAAAAAB0/HKAiw3_5JuI/s1600/3.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
  
   }
   
-  .authentication form {
-    margin-bottom: 1rem;
-  }
+  
   .login-form{
     min-height:345px;
     position:relative;
     perspective:1000px;
     transform-style:preserve-3d;
+	
   }
   .login-form .group{
     margin-bottom:15px;
@@ -62,7 +56,7 @@
 	width:100%;
 	margin:auto;
 	max-width:525px;
-	min-height:670px;
+	min-height:700px;
 	position:relative;
 /**	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center; */
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
@@ -73,4 +67,21 @@
 	position:absolute;
 	padding:90px 70px 50px 70px;
 	background:rgba(40,57,101,.9);
+}
+.login-form .group{
+	margin-bottom:15px;
+}
+.login-form .group .label,
+
+.login-form .button{
+	width:100%;
+	color:#fff;
+  display:block;
+}
+
+.login-form  .button{
+	border:none;
+	padding:15px 20px;
+	border-radius:25px;
+	background: #1161ee;
 }

@@ -9,7 +9,7 @@ return(
     <li className="user-item">
         
             <Card className="user-item__content">
-            <Link to={`/${props.id}/models`}>
+            <Link >
             <div className="user-item__image">
                <Avatar image={props.image}  alt={props.name}/>
             </div>

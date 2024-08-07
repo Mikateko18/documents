@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, StrictMode} from "react";
 import './ModelItem.css'
 import Card from "../../shared/components/UIComponents/Card";
 import Button from "../../shared/components/FormElements/Button";
@@ -9,6 +9,13 @@ import ErrorModal from '../../shared/components/UIComponents/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIComponents/LoadingSpinner';
 import axios from 'axios'
 import fileDownload from 'js-file-download'
+
+import ImageUpload from "../../shared/components/FormElements/ImageUpload";
+
+import { createRoot } from 'react-dom/client';
+import PlayerComponent from "../pages/AR";
+import Sidebar3 from "../../shared/components/Navigation/Sidebar3";
+
 
 const ModelItem = props => {
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -38,14 +45,23 @@ const ModelItem = props => {
         
     }
 
-    const handleDownload = (url, filename) => {
-        axios.get(url, {
-          responseType: 'blob',
-        })
-        .then((res) => {
-          fileDownload(res.data, filename)
-        })
-      }
+    const Experience = props =>{
+      
+        const rootElement = document.getElementById('root');
+        const root = createRoot(rootElement);
+        root.render(
+            <React.Fragment>
+            
+           <StrictMode>
+           
+              <PlayerComponent />
+           </StrictMode>
+           </React.Fragment>
+        );
+      
+
+    }
+
 
     return(
         <React.Fragment>
@@ -65,23 +81,22 @@ const ModelItem = props => {
                     please note that it cannot be undone thereafter.</p>
             </Modal>
     
-        <li className="place-item">
+        <li className="place-item2">
             
-            <Card className="place-item__content">
+            <Card className="place-item2__content">
             {isLoading && <LoadingSpinner asOverlay />}
-                <div className="place-item__image">
-                   <img src={props.image}  alt={props.title}/>
+                <div className="place-item2__image">
+                   <img src={`http://localhost:5000/${props.image}`}  alt={props.title}/>
                 </div>
-                <div className="place-item__info">
+                <div className="place-item2__info">
                     <h2>{props.title}</h2>
                     <p>{props.description}</p>
     
                 </div>
                 
-                <div className="place-item__actions">
-                {auth.isLoggedIn &&<Button inverse onClick={() => {this.handleDownload(`http://localhost:5000/api/models/${props.image}`, '/src/images/gearbox.png')
-                }}>DOWNLOAD</Button>}
-                {auth.isLoggedIn &&<Button inverse>EXPERIENCE</Button> }
+                <div className="place-item2__actions">
+                {auth.isLoggedIn &&<Button inverse href="https://gitlab.com/OMotuba/ImmersivePJ">DOWNLOAD</Button>}
+                {auth.isLoggedIn &&<Button inverse onClick={Experience} >EXPERIENCE</Button> }
                 {auth.userId === props.creatorId && <Button danger onClick={showDeletewarningHandler}>DELETE</Button>}
 
                 </div>

@@ -4,5 +4,60 @@
     padding: 0;
     width: 90%;
     max-width: 40rem;
+    position: relative;
+    top: 50px;
   }
+
+  .SidebarList5{
+    height: auto;
+    padding: 0;
+    position: relative;
+    top:30px;
+    width: 100%; 
+    right:300px;
+    color:  #ebebeb;
+   
+ }
+ .SidebarList5 .row{
+     
+     width:100%;
+     height: 50px;
+     list-style-type: none;
+     margin: 0%;
+     display: flex;
+     flex-direction: row;
+     color:  #ebebeb;
+     justify-content: center;
+     align-items: center;
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+    
+ }
+ .SidebarList5 .row:hover{
+     cursor: pointer;
+     background-color: rgba(40,57,101,.9);
+ 
+ }
+ .SidebarList5 .row .icon {
+     flex: 30%;
+     display: grid;
+     place-items: center;
+     
+     
+ }
+ .row  #a{
+     flex: 85%;
+     color: whitesmoke
+ }
+ .SidebarList5 a {
+     border: 1px solid transparent;
+     color: #292929;
+     text-decoration: none;
+     padding: 0.5rem;
+     flex: 85%;
+     color: whitesmoke;
+     position: relative;
+     left:20px;
+   }
+ 
   
