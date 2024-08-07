@@ -10,25 +10,6 @@ const NavLinks = props =>{
 
     return <ul className="nav-links">
        
-        {auth.isLoggedIn && (<li>
-            <NavLink to={`/${auth.userId}/models`}>My Models</NavLink>
-        </li>
-        ) 
-        }
-         {auth.isLoggedIn && (
-        <li>
-            <NavLink to="/models/new">Add model</NavLink>
-        </li>
-         ) 
-        }
-        
-        <li>
-            <NavLink to="/auth">Contact us</NavLink>
-        </li>
-        
-        
-         
-        
        
         {auth.isLoggedIn && 
         <li className= "button1">

@@ -26,12 +26,15 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
+import ImageUpload from '../../shared/components/FormElements/ImageUpload';
+import { unstable_debounce } from '@mui/utils';
 
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
+    
   },
   paper: {
     margin: theme.spacing(5, 5),
@@ -62,14 +65,16 @@ const useStyles = makeStyles((theme) => ({
   },
   h2: {
          position: 'relative',
-         left: '100px'  
+         left: '100px' ,
+         color: "White" 
   },
   h3: {
     position: 'relative',
     left: '100px',
     fontSize:"20px",
     fontWeight:"bold",
-    bottom:"40px"
+    bottom:"40px",
+    color:"white"
 },
   form: {
     width: "100%",
@@ -119,7 +124,8 @@ export default function  Auth () {
       setFormData(
         {
           ...formState.inputs,
-          name: undefined
+          name: undefined,
+          
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -130,7 +136,8 @@ export default function  Auth () {
           name: {
             value: '',
             isValid: false
-          }
+          },
+          
         },
         false
       );
@@ -140,6 +147,8 @@ export default function  Auth () {
 
   const authSubmitHandler = async event => {
     event.preventDefault();
+
+    console.log(formState.inputs)
 
     if (isLoginMode) {
       try {
@@ -154,30 +163,32 @@ export default function  Auth () {
             'Content-Type': 'application/json'
           }
         );
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId);
       } catch (err) {}
     } else {
       try {
+
+        const formData = new FormData();
+        formData.append('email', formState.inputs.email.value );
+        formData.append('name', formState.inputs.name.value );
+        formData.append('password', formState.inputs.password.value );
+        //formData.append('image', formState.inputs.image.value );
+     
         const responseData = await sendRequest(
           'http://localhost:5000/api/users/signup',
           'POST',
-          JSON.stringify({
-            name: formState.inputs.name.value,
-            email: formState.inputs.email.value,
-            password: formState.inputs.password.value
-          }),
-          {
-            'Content-Type': 'application/json'
-          }
+         formData,
+          
         );
 
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId);
       } catch (err) {}
     }
   };
 
   return (
     <React.Fragment>
+      <div className = "authentication">
       <Grid container component="main" className={classes.root}>
       
        
@@ -187,7 +198,7 @@ export default function  Auth () {
             <AccountCircle />
           </Avatar>
           <Typography className={classes.h3} com>
-            {greet}😊
+            {greet}
           </Typography>
       <ErrorModal error={error} onClear={clearError} />
      
@@ -233,15 +244,15 @@ export default function  Auth () {
            onInput={inputHandler}
          
           />
+          <br />
           
-           
-          <Button type="submit" >
-            {isLoginMode ? 'LOGIN' : 'SIGNUP'}
+          <Button type="submit" disabled={!formState.isValid}>
+            {isLoginMode ? 'SIGN IN' : 'SIGN UP'}
           </Button>
-        
+         <br />
         
         <Button inverse onClick={switchModeHandler}>
-           {isLoginMode ? 'SIGNUP' : 'LOGIN'}
+           {isLoginMode ? 'SIGN UP' : 'SIGN IN'}
         </Button>
         </form>
         </div>
@@ -249,7 +260,7 @@ export default function  Auth () {
       
      
       </Grid>
-     
+      </div>
     </React.Fragment>
   );
 };

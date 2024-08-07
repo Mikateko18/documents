@@ -1,0 +1,13 @@
+.AR{
+    width: 50%;
+    position: relative;
+    left:400px;
+    top: 100px;
+}
+.box3{
+    width: 260px;
+    height: 1100px;
+    position: relative;
+    bottom:555px;
+    background-color: rgba(40,57,101,.9);
+}

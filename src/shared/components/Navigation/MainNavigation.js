@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import SideDrawer from "./SideDrawer";
 import Backdrop from "../UIComponents/Backdrop";
+import Sidebar from "./Sidebar";
 
 
 const MainNavigation = props => {
@@ -41,6 +42,7 @@ const MainNavigation = props => {
      </h2>
      <nav className="main-navigation__header-nav">
        <NavLinks />
+      
      </nav>
    </MainHeader>
    </React.Fragment>
